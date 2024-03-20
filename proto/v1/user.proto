@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package grpc;
+
+option go_package = "zapirus.v1;v1s";
+
+service Grpc {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+  rpc EditUser(EditUserRequest) returns (UserResponse);
+}
+
+message RegisterRequest {
+  string id = 1;
+  string firstname = 2;
+  string lastname = 3;
+  string email = 4;
+  int64 age = 5;
+  google.protobuf.Timestamp created = 6;
+}
+
+message RegisterResponse{
+  int32 id = 1;
+}
+
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+  int32 age = 4;
+}
+
+message EditUserRequest {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  int32 age = 4;
+}
